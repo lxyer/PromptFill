@@ -169,7 +169,7 @@ For the fork on GitHub:
 - Push `feature/*` branches only when you need backup, collaboration, or PR review.
 - Avoid keeping stale remote feature branches around.
 - You do **not** need to push `upstream-main`; it is primarily a local tracking branch.
-- Consider enabling branch protection on `main` later if you want stricter safety.
+- `main` branch protection is enabled on GitHub to block force-pushes and branch deletion while still keeping normal admin pushes available for lightweight solo maintenance.
 
 ## Quick Command Reference
 
