@@ -455,7 +455,7 @@ const App = () => {
       console.warn("[Sync] 同步过程中出现非致命异常:", e.message);
     }
     return false;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // 已移除：启动时 useEffect([]) 静默 fetchAndApplyRemoteData — 会在 IndexedDB 加载完成后仍全量 setTemplates/setBanks，
   // 覆盖用户数据与文件夹存储。远端同步请使用「刷新系统数据」内的 merge 流程或数据更新通知。
@@ -1379,7 +1379,6 @@ const App = () => {
           });
 
           // ── 用截断后的 content 替换 newContent ──
-          // eslint-disable-next-line no-param-reassign
           result._finalContent = finalContent;
         }
 
@@ -2112,10 +2111,11 @@ ${tagsHint ? `\n${tagsHint}` : ''}
           return nameA.localeCompare(nameB, language === 'cn' ? 'zh-CN' : 'en');
         case 'z-a':
           return nameB.localeCompare(nameA, language === 'cn' ? 'zh-CN' : 'en');
-        case 'random':
+        case 'random': {
           const hashA = (a.id + randomSeed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
           const hashB = (b.id + randomSeed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
           return hashA - hashB;
+        }
         default:
           return 0;
       }
@@ -2739,7 +2739,7 @@ ${tagsHint ? `\n${tagsHint}` : ''}
       try {
           let total = 0;
           for (let key in localStorage) {
-              if (localStorage.hasOwnProperty(key)) {
+              if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
                   total += localStorage[key].length + key.length;
               }
           }
@@ -2939,7 +2939,7 @@ ${tagsHint ? `\n${tagsHint}` : ''}
         if(textareaRef.current) textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
       }, 50);
       return;
-    };
+    }
 
     const textarea = textareaRef.current;
     if (!textarea) return;
