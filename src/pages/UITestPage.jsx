@@ -367,7 +367,6 @@ function CassetteRack({ isDarkMode }) {
               : '1px solid transparent',
             marginLeft: selectedId === item.id ? 4 : 0,
             marginRight: selectedId === item.id ? 4 : 0,
-            transition: 'width 0.32s cubic-bezier(0.4,0,0.2,1), margin 0.32s ease, border-color 0.2s ease',
           }}>
             {/* 只在选中时渲染内容，避免折叠状态下文字溢出 */}
             {selectedId === item.id && (

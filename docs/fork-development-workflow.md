@@ -122,11 +122,12 @@ If conflicts happen:
 
 Minimum checks:
 ```bash
-npm install
+npm ci
+npm run lint
 npm run build
 ```
 
-If the repo has tests later, also run:
+If the repo gains tests later, also run:
 ```bash
 npm test
 ```
@@ -169,7 +170,8 @@ For the fork on GitHub:
 - Push `feature/*` branches only when you need backup, collaboration, or PR review.
 - Avoid keeping stale remote feature branches around.
 - You do **not** need to push `upstream-main`; it is primarily a local tracking branch.
-- `main` branch protection is enabled on GitHub to block force-pushes and branch deletion while still keeping normal admin pushes available for lightweight solo maintenance.
+- `main` branch protection is enabled on GitHub. Force-pushes and branch deletion are blocked.
+- GitHub Actions CI is the required safety gate on `main`: lint and build must pass before normal protected-branch updates.
 
 ## Quick Command Reference
 
